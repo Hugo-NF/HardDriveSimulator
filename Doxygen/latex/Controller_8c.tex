@@ -1,0 +1,159 @@
+\hypertarget{Controller_8c}{}\section{/home/hugo/\+Documentos/\+Un\+B/3° Semestre/\+Hard\+Drive\+Simulator/\+Controller.c File Reference}
+\label{Controller_8c}\index{/home/hugo/\+Documentos/\+Un\+B/3° Semestre/\+Hard\+Drive\+Simulator/\+Controller.\+c@{/home/hugo/\+Documentos/\+Un\+B/3° Semestre/\+Hard\+Drive\+Simulator/\+Controller.\+c}}
+{\ttfamily \#include \char`\"{}Controller.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Controller_8h_aac9714ee244ab7b1ecf20b9ee4766dfb}{Virtual\+Disk} $\ast$ \hyperlink{Controller_8c_a8a37658f171d55fea2ae968564f78e49}{install\+Disk} ()
+\item 
+void \hyperlink{Controller_8c_a9e9249f0d8c89c8f70534d2966807788}{uninstall\+Disk} (\hyperlink{Controller_8h_aac9714ee244ab7b1ecf20b9ee4766dfb}{Virtual\+Disk} $\ast$disk)
+\item 
+\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$ \hyperlink{Controller_8c_ace36a1adbded1629ac5e3bb6893d65a9}{start\+Fat} ()
+\item 
+void \hyperlink{Controller_8c_a3d97ab801074bd18abfd460b5706659d}{finish\+Fat} (\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$fat)
+\item 
+unsigned char $\ast$ \hyperlink{Controller_8c_a4e59d21de29b6396f9033cd6715b88e1}{create\+Buffer} (char $\ast$file\+\_\+name, int $\ast$buffer\+\_\+size)
+\item 
+int \hyperlink{Controller_8c_a3d41940115ab5ee7a490aa7255bd7011}{find\+Cluster} (\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$fat)
+\item 
+void \hyperlink{Controller_8c_aa28aa6883dc1ebaaf66a43ae8726c9ce}{free\+Clusters} (\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$fat, int $\ast$clusters, int quantity)
+\item 
+int $\ast$ \hyperlink{Controller_8c_a851f4b8b1b9026f45e6cdaf1513ed945}{allocate\+Clusters} (\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$fat, int quantity)
+\item 
+int $\ast$ \hyperlink{Controller_8c_aff423f9340de7c5bac6d923a5d37fd1a}{seek\+Cluster} (int cluster\+\_\+id)
+\item 
+double \hyperlink{Controller_8c_abe6b2c68eb56ff0beb98c5380690cc75}{write\+File} (\hyperlink{Controller_8h_aac9714ee244ab7b1ecf20b9ee4766dfb}{Virtual\+Disk} $\ast$drive, \hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$fat, char $\ast$file\+\_\+name)
+\item 
+double \hyperlink{Controller_8c_aff0ffdbd56b39dd9171247e84a700eb4}{read\+File} (\hyperlink{Controller_8h_aac9714ee244ab7b1ecf20b9ee4766dfb}{Virtual\+Disk} $\ast$drive, \hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$fat, char $\ast$file\+\_\+name)
+\item 
+int \hyperlink{Controller_8c_ac86f048b1a349069494ccb30004b1667}{delete\+File} (\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$fat, char $\ast$file\+\_\+name)
+\item 
+void \hyperlink{Controller_8c_a1c15570bcea596d6bc444cc9c7473005}{show\+F\+A\+T\+Table} (\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$fat)
+\item 
+\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$ \hyperlink{Controller_8c_a9a1bf52b90308b20596e3c81b0afb97d}{format\+Disk} (\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$data)
+\item 
+double \hyperlink{Controller_8c_a079f1d85292e12b869ff4690516f6a49}{computing\+Time} (int $\ast$sectors, int n)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{Controller_8c_a851f4b8b1b9026f45e6cdaf1513ed945}\label{Controller_8c_a851f4b8b1b9026f45e6cdaf1513ed945}} 
+\index{Controller.\+c@{Controller.\+c}!allocate\+Clusters@{allocate\+Clusters}}
+\index{allocate\+Clusters@{allocate\+Clusters}!Controller.\+c@{Controller.\+c}}
+\subsubsection{\texorpdfstring{allocate\+Clusters()}{allocateClusters()}}
+{\footnotesize\ttfamily int$\ast$ allocate\+Clusters (\begin{DoxyParamCaption}\item[{\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+\hyperlink{Controller_8h_ad669323163b7b2b3175c7c35d5733230}{allocate\+Clusters()}; Sets all clusters that a file will use  \+: F\+AT Table of the disk, an integer with the amount of clusters needed by the file \begin{DoxyReturn}{Returns}
+\+: an array of integers with the number of all clusters 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Controller_8c_a079f1d85292e12b869ff4690516f6a49}\label{Controller_8c_a079f1d85292e12b869ff4690516f6a49}} 
+\index{Controller.\+c@{Controller.\+c}!computing\+Time@{computing\+Time}}
+\index{computing\+Time@{computing\+Time}!Controller.\+c@{Controller.\+c}}
+\subsubsection{\texorpdfstring{computing\+Time()}{computingTime()}}
+{\footnotesize\ttfamily double computing\+Time (\begin{DoxyParamCaption}\item[{int $\ast$}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+\hyperlink{Controller_8h_a0069f7330b3720f267c9be2e4e7fdb6d}{computing\+Time()}; Calculates the time needed to write or read a file  \+: array with the clusters used, size of the array \begin{DoxyReturn}{Returns}
+\+: double with the time used in the operation 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Controller_8c_a4e59d21de29b6396f9033cd6715b88e1}\label{Controller_8c_a4e59d21de29b6396f9033cd6715b88e1}} 
+\index{Controller.\+c@{Controller.\+c}!create\+Buffer@{create\+Buffer}}
+\index{create\+Buffer@{create\+Buffer}!Controller.\+c@{Controller.\+c}}
+\subsubsection{\texorpdfstring{create\+Buffer()}{createBuffer()}}
+{\footnotesize\ttfamily unsigned char$\ast$ create\+Buffer (\begin{DoxyParamCaption}\item[{char $\ast$}]{,  }\item[{int $\ast$}]{ }\end{DoxyParamCaption})}
+
+\hyperlink{Controller_8h_a4d158080d463ad0106c96d88269462ac}{create\+Buffer()}; Opens a file and creates a buffer with its content  \+: string with the filename and an pointer to an integer with the size of the buffer \begin{DoxyReturn}{Returns}
+\+: string containing the file 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Controller_8c_ac86f048b1a349069494ccb30004b1667}\label{Controller_8c_ac86f048b1a349069494ccb30004b1667}} 
+\index{Controller.\+c@{Controller.\+c}!delete\+File@{delete\+File}}
+\index{delete\+File@{delete\+File}!Controller.\+c@{Controller.\+c}}
+\subsubsection{\texorpdfstring{delete\+File()}{deleteFile()}}
+{\footnotesize\ttfamily int delete\+File (\begin{DoxyParamCaption}\item[{\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$}]{,  }\item[{char $\ast$}]{ }\end{DoxyParamCaption})}
+
+\hyperlink{Controller_8h_a694834c6f5bc4a427b9109ab97de8d6c}{delete\+File()}; Provides the interface to delete a file  \+: F\+AT Table pointer, string with the filename \begin{DoxyReturn}{Returns}
+\+: a integer meaning the completeness (or not) of the operation 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Controller_8c_a3d41940115ab5ee7a490aa7255bd7011}\label{Controller_8c_a3d41940115ab5ee7a490aa7255bd7011}} 
+\index{Controller.\+c@{Controller.\+c}!find\+Cluster@{find\+Cluster}}
+\index{find\+Cluster@{find\+Cluster}!Controller.\+c@{Controller.\+c}}
+\subsubsection{\texorpdfstring{find\+Cluster()}{findCluster()}}
+{\footnotesize\ttfamily int find\+Cluster (\begin{DoxyParamCaption}\item[{\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$}]{ }\end{DoxyParamCaption})}
+
+\hyperlink{Controller_8h_a19b6aeee0943bf88ff607999c909abb0}{find\+Cluster()}; Finds the next empty cluster  \+: F\+AT Table of the disk \begin{DoxyReturn}{Returns}
+\+: Number of the sector where the cluster starts (integer) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Controller_8c_a3d97ab801074bd18abfd460b5706659d}\label{Controller_8c_a3d97ab801074bd18abfd460b5706659d}} 
+\index{Controller.\+c@{Controller.\+c}!finish\+Fat@{finish\+Fat}}
+\index{finish\+Fat@{finish\+Fat}!Controller.\+c@{Controller.\+c}}
+\subsubsection{\texorpdfstring{finish\+Fat()}{finishFat()}}
+{\footnotesize\ttfamily void finish\+Fat (\begin{DoxyParamCaption}\item[{\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$}]{ }\end{DoxyParamCaption})}
+
+\hyperlink{Controller_8h_a7417e49b4ca4441e44e5682961978a7a}{finish\+Fat()}; Releases all the memory used for the F\+AT Table  \+: Fat\+Table pointer type containing the F\+AT Table to be \char`\"{}destroyed\char`\"{} \mbox{\Hypertarget{Controller_8c_a9a1bf52b90308b20596e3c81b0afb97d}\label{Controller_8c_a9a1bf52b90308b20596e3c81b0afb97d}} 
+\index{Controller.\+c@{Controller.\+c}!format\+Disk@{format\+Disk}}
+\index{format\+Disk@{format\+Disk}!Controller.\+c@{Controller.\+c}}
+\subsubsection{\texorpdfstring{format\+Disk()}{formatDisk()}}
+{\footnotesize\ttfamily \hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table}$\ast$ format\+Disk (\begin{DoxyParamCaption}\item[{\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$}]{data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Controller_8c_aa28aa6883dc1ebaaf66a43ae8726c9ce}\label{Controller_8c_aa28aa6883dc1ebaaf66a43ae8726c9ce}} 
+\index{Controller.\+c@{Controller.\+c}!free\+Clusters@{free\+Clusters}}
+\index{free\+Clusters@{free\+Clusters}!Controller.\+c@{Controller.\+c}}
+\subsubsection{\texorpdfstring{free\+Clusters()}{freeClusters()}}
+{\footnotesize\ttfamily void free\+Clusters (\begin{DoxyParamCaption}\item[{\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$}]{,  }\item[{int $\ast$}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+\hyperlink{Controller_8h_a5cf5ebee92cc654930d3cbebb536498c}{free\+Clusters()}; In case of an error, this function restores the disk to its previous state (before the writing has been started)  \+: F\+AT Table of the disk, the clusters and the amount of clusters that were used in the writing session \mbox{\Hypertarget{Controller_8c_a8a37658f171d55fea2ae968564f78e49}\label{Controller_8c_a8a37658f171d55fea2ae968564f78e49}} 
+\index{Controller.\+c@{Controller.\+c}!install\+Disk@{install\+Disk}}
+\index{install\+Disk@{install\+Disk}!Controller.\+c@{Controller.\+c}}
+\subsubsection{\texorpdfstring{install\+Disk()}{installDisk()}}
+{\footnotesize\ttfamily \hyperlink{Controller_8h_aac9714ee244ab7b1ecf20b9ee4766dfb}{Virtual\+Disk}$\ast$ install\+Disk (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hyperlink{Controller_8h_a8a37658f171d55fea2ae968564f78e49}{install\+Disk()}; This function is responsible for the allocation of the memory that will be used to the disk structure \begin{DoxyReturn}{Returns}
+\+: Virtual\+Disk pointer type, pointing to the just allocated memory area. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Controller_8c_aff0ffdbd56b39dd9171247e84a700eb4}\label{Controller_8c_aff0ffdbd56b39dd9171247e84a700eb4}} 
+\index{Controller.\+c@{Controller.\+c}!read\+File@{read\+File}}
+\index{read\+File@{read\+File}!Controller.\+c@{Controller.\+c}}
+\subsubsection{\texorpdfstring{read\+File()}{readFile()}}
+{\footnotesize\ttfamily double read\+File (\begin{DoxyParamCaption}\item[{\hyperlink{Controller_8h_aac9714ee244ab7b1ecf20b9ee4766dfb}{Virtual\+Disk} $\ast$}]{,  }\item[{\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$}]{,  }\item[{char $\ast$}]{ }\end{DoxyParamCaption})}
+
+\hyperlink{Controller_8h_a1b26821fcb8ae212561015d91e44f2d4}{read\+File()}; Provides the interface to read a file  \+: Disk pointer, F\+AT Table pointer, string with the filename \begin{DoxyReturn}{Returns}
+\+: a double with the time elapsed to read the file 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Controller_8c_aff423f9340de7c5bac6d923a5d37fd1a}\label{Controller_8c_aff423f9340de7c5bac6d923a5d37fd1a}} 
+\index{Controller.\+c@{Controller.\+c}!seek\+Cluster@{seek\+Cluster}}
+\index{seek\+Cluster@{seek\+Cluster}!Controller.\+c@{Controller.\+c}}
+\subsubsection{\texorpdfstring{seek\+Cluster()}{seekCluster()}}
+{\footnotesize\ttfamily int$\ast$ seek\+Cluster (\begin{DoxyParamCaption}\item[{int}]{ }\end{DoxyParamCaption})}
+
+\hyperlink{Controller_8h_abfc572b683b8ab210717bc13d09757dc}{seek\+Cluster()}; Locates a sector in the disk  \+: integer with the number of the sector \begin{DoxyReturn}{Returns}
+\+: an array of integers containing the coordinates of the sector in the disk 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Controller_8c_a1c15570bcea596d6bc444cc9c7473005}\label{Controller_8c_a1c15570bcea596d6bc444cc9c7473005}} 
+\index{Controller.\+c@{Controller.\+c}!show\+F\+A\+T\+Table@{show\+F\+A\+T\+Table}}
+\index{show\+F\+A\+T\+Table@{show\+F\+A\+T\+Table}!Controller.\+c@{Controller.\+c}}
+\subsubsection{\texorpdfstring{show\+F\+A\+T\+Table()}{showFATTable()}}
+{\footnotesize\ttfamily void show\+F\+A\+T\+Table (\begin{DoxyParamCaption}\item[{\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$}]{ }\end{DoxyParamCaption})}
+
+\hyperlink{Controller_8h_a40ec5950586c1ca119ebc2674e0ecee5}{show\+F\+A\+T\+Table()}; Prints the F\+AT Table on the screen  \+: F\+AT Table pointer \mbox{\Hypertarget{Controller_8c_ace36a1adbded1629ac5e3bb6893d65a9}\label{Controller_8c_ace36a1adbded1629ac5e3bb6893d65a9}} 
+\index{Controller.\+c@{Controller.\+c}!start\+Fat@{start\+Fat}}
+\index{start\+Fat@{start\+Fat}!Controller.\+c@{Controller.\+c}}
+\subsubsection{\texorpdfstring{start\+Fat()}{startFat()}}
+{\footnotesize\ttfamily \hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table}$\ast$ start\+Fat (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hyperlink{Controller_8h_ace36a1adbded1629ac5e3bb6893d65a9}{start\+Fat()}; Allocates and starts the F\+AT Table with the appropriated constants \begin{DoxyReturn}{Returns}
+\+: Fat\+Table pointer type, pointing to the just allocated memory area 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Controller_8c_a9e9249f0d8c89c8f70534d2966807788}\label{Controller_8c_a9e9249f0d8c89c8f70534d2966807788}} 
+\index{Controller.\+c@{Controller.\+c}!uninstall\+Disk@{uninstall\+Disk}}
+\index{uninstall\+Disk@{uninstall\+Disk}!Controller.\+c@{Controller.\+c}}
+\subsubsection{\texorpdfstring{uninstall\+Disk()}{uninstallDisk()}}
+{\footnotesize\ttfamily void uninstall\+Disk (\begin{DoxyParamCaption}\item[{\hyperlink{Controller_8h_aac9714ee244ab7b1ecf20b9ee4766dfb}{Virtual\+Disk} $\ast$}]{ }\end{DoxyParamCaption})}
+
+\hyperlink{Controller_8h_add6330ba12cb0733df16e77935f1f21b}{uninstall\+Disk()}; This function does the opposite of install\+Disk, releasing all the allocated memory for the disk  \+: Virtual\+Disk pointer type, pointing to the disk to be \char`\"{}destroyed\char`\"{}. \mbox{\Hypertarget{Controller_8c_abe6b2c68eb56ff0beb98c5380690cc75}\label{Controller_8c_abe6b2c68eb56ff0beb98c5380690cc75}} 
+\index{Controller.\+c@{Controller.\+c}!write\+File@{write\+File}}
+\index{write\+File@{write\+File}!Controller.\+c@{Controller.\+c}}
+\subsubsection{\texorpdfstring{write\+File()}{writeFile()}}
+{\footnotesize\ttfamily double write\+File (\begin{DoxyParamCaption}\item[{\hyperlink{Controller_8h_aac9714ee244ab7b1ecf20b9ee4766dfb}{Virtual\+Disk} $\ast$}]{,  }\item[{\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$}]{,  }\item[{char $\ast$}]{ }\end{DoxyParamCaption})}
+
+\hyperlink{Controller_8h_ad5d72fb08a29d478aec7e38cf7569a68}{write\+File()}; Provides the interface to write a file  \+: Disk pointer, F\+AT Table pointer, string with the filename \begin{DoxyReturn}{Returns}
+\+: a double with the time elapsed to write the file 
+\end{DoxyReturn}

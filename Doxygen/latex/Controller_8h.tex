@@ -1,0 +1,464 @@
+\hypertarget{Controller_8h}{}\section{/home/hugo/\+Documentos/\+Un\+B/3° Semestre/\+Hard\+Drive\+Simulator/\+Controller.h File Reference}
+\label{Controller_8h}\index{/home/hugo/\+Documentos/\+Un\+B/3° Semestre/\+Hard\+Drive\+Simulator/\+Controller.\+h@{/home/hugo/\+Documentos/\+Un\+B/3° Semestre/\+Hard\+Drive\+Simulator/\+Controller.\+h}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structsector}{sector}
+\item 
+struct \hyperlink{structtrack}{track}
+\item 
+struct \hyperlink{structcylinder}{cylinder}
+\item 
+struct \hyperlink{structvirtualdisk}{virtualdisk}
+\item 
+struct \hyperlink{structfatent}{fatent}
+\item 
+struct \hyperlink{structfatfiles}{fatfiles}
+\item 
+struct \hyperlink{structfattable}{fattable}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{Controller_8h_a427fe230eeff02fc404f0d18a6c13cba}{disk\+\_\+name}~\char`\"{}Disco Local (C\+:)\char`\"{}
+\item 
+\#define \hyperlink{Controller_8h_a1b18f4b960b1edf77fa6c4f9c668d1f9}{sector\+\_\+size}~512
+\item 
+\#define \hyperlink{Controller_8h_a4a18c88ff3b45260535ba5d60cfe73cf}{cluster\+\_\+size}~4
+\item 
+\#define \hyperlink{Controller_8h_a1163d5f5a82edb7519900149b5b36242}{cluster\+\_\+memory}~2048.\+0
+\item 
+\#define \hyperlink{Controller_8h_ab4b038d52bc29ca8c6b9c7964caf53b8}{sectors\+\_\+per\+\_\+track}~60
+\item 
+\#define \hyperlink{Controller_8h_a75b952938d40fc13121b9261f8e5c4ab}{sectors\+\_\+per\+\_\+cylinder}~300
+\item 
+\#define \hyperlink{Controller_8h_ac2135ecb0c45d031ad75ea61d7a7ce64}{tracks\+\_\+per\+\_\+cylinder}~5
+\item 
+\#define \hyperlink{Controller_8h_aa01c5a55a7b64ff83dbc8923404f5918}{tracks\+\_\+per\+\_\+surface}~10
+\item 
+\#define \hyperlink{Controller_8h_a0969e76eaf059fec670aef17470f307b}{sectors\+\_\+amount}~3000
+\item 
+\#define \hyperlink{Controller_8h_a0be1c4c8c2140c67273a3ce2b1111874}{average\+\_\+seek}~4
+\item 
+\#define \hyperlink{Controller_8h_ab5b13321352ef42e8120438fb30c6fbe}{min\+\_\+seek}~1
+\item 
+\#define \hyperlink{Controller_8h_a999baf7e294bf95234d9dd1381424864}{average\+\_\+latency}~6
+\item 
+\#define \hyperlink{Controller_8h_ac7b10a75393a95f4d90a64c4ad40a871}{transfer\+\_\+time}~12
+\item 
+\#define \hyperlink{Controller_8h_aed6ac0701172f7249ce45b4509f205cd}{address\+\_\+size}~256
+\item 
+\#define \hyperlink{Controller_8h_a4667810f63a987c2e6c1be9b672abc67}{available}~0
+\item 
+\#define \hyperlink{Controller_8h_a961297de9ca2bf1f45e452eb47c1a197}{unavailable}~1
+\item 
+\#define \hyperlink{Controller_8h_a815fd014d1ecf6997619feafb52d7cb0}{eof\+\_\+flag}~0
+\item 
+\#define \hyperlink{Controller_8h_acd7c7dd00cbe133ca694406a906498d2}{not\+\_\+eof\+\_\+flag}~1
+\item 
+\#define \hyperlink{Controller_8h_a183d8d54eee8d59c0dafff0f04c24023}{succeed}~0x0
+\item 
+\#define \hyperlink{Controller_8h_a13733c81e410b5b37b6c9987ae8a059d}{ptr\+\_\+missing\+\_\+file}~N\+U\+LL
+\item 
+\#define \hyperlink{Controller_8h_a225c87559a07b4eaba7cabeb4ef1f772}{missing\+\_\+file}~-\/1
+\item 
+\#define \hyperlink{Controller_8h_a4bcd558c0a97cdf5f18e2ee9be53fa10}{damaged\+\_\+disk}~N\+U\+LL
+\item 
+\#define \hyperlink{Controller_8h_aa25f24ed9559c5ee61d03e090b852660}{ptr\+\_\+disk\+\_\+full}~N\+U\+LL
+\item 
+\#define \hyperlink{Controller_8h_afc4274d343b7d432254fff836f8951e1}{disk\+\_\+full}~-\/4
+\item 
+\#define \hyperlink{Controller_8h_a6bfef66cb386c80b2f81e2618e9f3c27}{corrupted\+\_\+fat}~N\+U\+LL
+\item 
+\#define \hyperlink{Controller_8h_a1177cc3700177fed490eaa4aebe7795b}{writing\+\_\+failed}~-\/2
+\item 
+\#define \hyperlink{Controller_8h_a460d64ddab1cca1af3268ea3ffb9d322}{reading\+\_\+failed}~-\/3
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structsector}{sector} \hyperlink{Controller_8h_a8cca6de5b7a5aa7542b645270752e38b}{Sector}
+\item 
+typedef struct \hyperlink{structtrack}{track} \hyperlink{Controller_8h_afc447719272e2c615253e5962c998916}{Track}
+\item 
+typedef struct \hyperlink{structcylinder}{cylinder} \hyperlink{Controller_8h_addd3f2f7957fb4e48765dc1d841ea61c}{Cylinder}
+\item 
+typedef struct \hyperlink{structvirtualdisk}{virtualdisk} \hyperlink{Controller_8h_aac9714ee244ab7b1ecf20b9ee4766dfb}{Virtual\+Disk}
+\item 
+typedef struct \hyperlink{structfatent}{fatent} \hyperlink{Controller_8h_abedaca4384c1842591e79536cf3429da}{Fat\+Ent}
+\item 
+typedef struct \hyperlink{structfatfiles}{fatfiles} \hyperlink{Controller_8h_aa84916cacfe28babf283e252f87b011e}{Fat\+Files}
+\item 
+typedef struct \hyperlink{structfattable}{fattable} \hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Controller_8h_aac9714ee244ab7b1ecf20b9ee4766dfb}{Virtual\+Disk} $\ast$ \hyperlink{Controller_8h_a8a37658f171d55fea2ae968564f78e49}{install\+Disk} ()
+\item 
+void \hyperlink{Controller_8h_add6330ba12cb0733df16e77935f1f21b}{uninstall\+Disk} (\hyperlink{Controller_8h_aac9714ee244ab7b1ecf20b9ee4766dfb}{Virtual\+Disk} $\ast$)
+\item 
+\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$ \hyperlink{Controller_8h_ace36a1adbded1629ac5e3bb6893d65a9}{start\+Fat} ()
+\item 
+void \hyperlink{Controller_8h_a7417e49b4ca4441e44e5682961978a7a}{finish\+Fat} (\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$)
+\item 
+unsigned char $\ast$ \hyperlink{Controller_8h_a4d158080d463ad0106c96d88269462ac}{create\+Buffer} (char $\ast$, int $\ast$)
+\item 
+int \hyperlink{Controller_8h_a19b6aeee0943bf88ff607999c909abb0}{find\+Cluster} (\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$)
+\item 
+void \hyperlink{Controller_8h_a5cf5ebee92cc654930d3cbebb536498c}{free\+Clusters} (\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$, int $\ast$, int)
+\item 
+int $\ast$ \hyperlink{Controller_8h_ad669323163b7b2b3175c7c35d5733230}{allocate\+Clusters} (\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$, int)
+\item 
+int $\ast$ \hyperlink{Controller_8h_abfc572b683b8ab210717bc13d09757dc}{seek\+Cluster} (int)
+\item 
+double \hyperlink{Controller_8h_ad5d72fb08a29d478aec7e38cf7569a68}{write\+File} (\hyperlink{Controller_8h_aac9714ee244ab7b1ecf20b9ee4766dfb}{Virtual\+Disk} $\ast$, \hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$, char $\ast$)
+\item 
+double \hyperlink{Controller_8h_a1b26821fcb8ae212561015d91e44f2d4}{read\+File} (\hyperlink{Controller_8h_aac9714ee244ab7b1ecf20b9ee4766dfb}{Virtual\+Disk} $\ast$, \hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$, char $\ast$)
+\item 
+int \hyperlink{Controller_8h_a694834c6f5bc4a427b9109ab97de8d6c}{delete\+File} (\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$, char $\ast$)
+\item 
+double \hyperlink{Controller_8h_a0069f7330b3720f267c9be2e4e7fdb6d}{computing\+Time} (int $\ast$, int)
+\item 
+void \hyperlink{Controller_8h_a40ec5950586c1ca119ebc2674e0ecee5}{show\+F\+A\+T\+Table} (\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$)
+\item 
+\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$ \hyperlink{Controller_8h_a683d56d7bfed2e245096bd443c1bba87}{format\+Disk} (\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{Controller_8h_aed6ac0701172f7249ce45b4509f205cd}\label{Controller_8h_aed6ac0701172f7249ce45b4509f205cd}} 
+\index{Controller.\+h@{Controller.\+h}!address\+\_\+size@{address\+\_\+size}}
+\index{address\+\_\+size@{address\+\_\+size}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{address\+\_\+size}{address\_size}}
+{\footnotesize\ttfamily \#define address\+\_\+size~256}
+
+\mbox{\Hypertarget{Controller_8h_a4667810f63a987c2e6c1be9b672abc67}\label{Controller_8h_a4667810f63a987c2e6c1be9b672abc67}} 
+\index{Controller.\+h@{Controller.\+h}!available@{available}}
+\index{available@{available}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{available}{available}}
+{\footnotesize\ttfamily \#define available~0}
+
+\mbox{\Hypertarget{Controller_8h_a999baf7e294bf95234d9dd1381424864}\label{Controller_8h_a999baf7e294bf95234d9dd1381424864}} 
+\index{Controller.\+h@{Controller.\+h}!average\+\_\+latency@{average\+\_\+latency}}
+\index{average\+\_\+latency@{average\+\_\+latency}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{average\+\_\+latency}{average\_latency}}
+{\footnotesize\ttfamily \#define average\+\_\+latency~6}
+
+\mbox{\Hypertarget{Controller_8h_a0be1c4c8c2140c67273a3ce2b1111874}\label{Controller_8h_a0be1c4c8c2140c67273a3ce2b1111874}} 
+\index{Controller.\+h@{Controller.\+h}!average\+\_\+seek@{average\+\_\+seek}}
+\index{average\+\_\+seek@{average\+\_\+seek}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{average\+\_\+seek}{average\_seek}}
+{\footnotesize\ttfamily \#define average\+\_\+seek~4}
+
+\mbox{\Hypertarget{Controller_8h_a1163d5f5a82edb7519900149b5b36242}\label{Controller_8h_a1163d5f5a82edb7519900149b5b36242}} 
+\index{Controller.\+h@{Controller.\+h}!cluster\+\_\+memory@{cluster\+\_\+memory}}
+\index{cluster\+\_\+memory@{cluster\+\_\+memory}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{cluster\+\_\+memory}{cluster\_memory}}
+{\footnotesize\ttfamily \#define cluster\+\_\+memory~2048.\+0}
+
+\mbox{\Hypertarget{Controller_8h_a4a18c88ff3b45260535ba5d60cfe73cf}\label{Controller_8h_a4a18c88ff3b45260535ba5d60cfe73cf}} 
+\index{Controller.\+h@{Controller.\+h}!cluster\+\_\+size@{cluster\+\_\+size}}
+\index{cluster\+\_\+size@{cluster\+\_\+size}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{cluster\+\_\+size}{cluster\_size}}
+{\footnotesize\ttfamily \#define cluster\+\_\+size~4}
+
+\mbox{\Hypertarget{Controller_8h_a6bfef66cb386c80b2f81e2618e9f3c27}\label{Controller_8h_a6bfef66cb386c80b2f81e2618e9f3c27}} 
+\index{Controller.\+h@{Controller.\+h}!corrupted\+\_\+fat@{corrupted\+\_\+fat}}
+\index{corrupted\+\_\+fat@{corrupted\+\_\+fat}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{corrupted\+\_\+fat}{corrupted\_fat}}
+{\footnotesize\ttfamily \#define corrupted\+\_\+fat~N\+U\+LL}
+
+\mbox{\Hypertarget{Controller_8h_a4bcd558c0a97cdf5f18e2ee9be53fa10}\label{Controller_8h_a4bcd558c0a97cdf5f18e2ee9be53fa10}} 
+\index{Controller.\+h@{Controller.\+h}!damaged\+\_\+disk@{damaged\+\_\+disk}}
+\index{damaged\+\_\+disk@{damaged\+\_\+disk}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{damaged\+\_\+disk}{damaged\_disk}}
+{\footnotesize\ttfamily \#define damaged\+\_\+disk~N\+U\+LL}
+
+\mbox{\Hypertarget{Controller_8h_afc4274d343b7d432254fff836f8951e1}\label{Controller_8h_afc4274d343b7d432254fff836f8951e1}} 
+\index{Controller.\+h@{Controller.\+h}!disk\+\_\+full@{disk\+\_\+full}}
+\index{disk\+\_\+full@{disk\+\_\+full}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{disk\+\_\+full}{disk\_full}}
+{\footnotesize\ttfamily \#define disk\+\_\+full~-\/4}
+
+\mbox{\Hypertarget{Controller_8h_a427fe230eeff02fc404f0d18a6c13cba}\label{Controller_8h_a427fe230eeff02fc404f0d18a6c13cba}} 
+\index{Controller.\+h@{Controller.\+h}!disk\+\_\+name@{disk\+\_\+name}}
+\index{disk\+\_\+name@{disk\+\_\+name}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{disk\+\_\+name}{disk\_name}}
+{\footnotesize\ttfamily \#define disk\+\_\+name~\char`\"{}Disco Local (C\+:)\char`\"{}}
+
+\mbox{\Hypertarget{Controller_8h_a815fd014d1ecf6997619feafb52d7cb0}\label{Controller_8h_a815fd014d1ecf6997619feafb52d7cb0}} 
+\index{Controller.\+h@{Controller.\+h}!eof\+\_\+flag@{eof\+\_\+flag}}
+\index{eof\+\_\+flag@{eof\+\_\+flag}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{eof\+\_\+flag}{eof\_flag}}
+{\footnotesize\ttfamily \#define eof\+\_\+flag~0}
+
+\mbox{\Hypertarget{Controller_8h_ab5b13321352ef42e8120438fb30c6fbe}\label{Controller_8h_ab5b13321352ef42e8120438fb30c6fbe}} 
+\index{Controller.\+h@{Controller.\+h}!min\+\_\+seek@{min\+\_\+seek}}
+\index{min\+\_\+seek@{min\+\_\+seek}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{min\+\_\+seek}{min\_seek}}
+{\footnotesize\ttfamily \#define min\+\_\+seek~1}
+
+\mbox{\Hypertarget{Controller_8h_a225c87559a07b4eaba7cabeb4ef1f772}\label{Controller_8h_a225c87559a07b4eaba7cabeb4ef1f772}} 
+\index{Controller.\+h@{Controller.\+h}!missing\+\_\+file@{missing\+\_\+file}}
+\index{missing\+\_\+file@{missing\+\_\+file}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{missing\+\_\+file}{missing\_file}}
+{\footnotesize\ttfamily \#define missing\+\_\+file~-\/1}
+
+\mbox{\Hypertarget{Controller_8h_acd7c7dd00cbe133ca694406a906498d2}\label{Controller_8h_acd7c7dd00cbe133ca694406a906498d2}} 
+\index{Controller.\+h@{Controller.\+h}!not\+\_\+eof\+\_\+flag@{not\+\_\+eof\+\_\+flag}}
+\index{not\+\_\+eof\+\_\+flag@{not\+\_\+eof\+\_\+flag}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{not\+\_\+eof\+\_\+flag}{not\_eof\_flag}}
+{\footnotesize\ttfamily \#define not\+\_\+eof\+\_\+flag~1}
+
+\mbox{\Hypertarget{Controller_8h_aa25f24ed9559c5ee61d03e090b852660}\label{Controller_8h_aa25f24ed9559c5ee61d03e090b852660}} 
+\index{Controller.\+h@{Controller.\+h}!ptr\+\_\+disk\+\_\+full@{ptr\+\_\+disk\+\_\+full}}
+\index{ptr\+\_\+disk\+\_\+full@{ptr\+\_\+disk\+\_\+full}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{ptr\+\_\+disk\+\_\+full}{ptr\_disk\_full}}
+{\footnotesize\ttfamily \#define ptr\+\_\+disk\+\_\+full~N\+U\+LL}
+
+\mbox{\Hypertarget{Controller_8h_a13733c81e410b5b37b6c9987ae8a059d}\label{Controller_8h_a13733c81e410b5b37b6c9987ae8a059d}} 
+\index{Controller.\+h@{Controller.\+h}!ptr\+\_\+missing\+\_\+file@{ptr\+\_\+missing\+\_\+file}}
+\index{ptr\+\_\+missing\+\_\+file@{ptr\+\_\+missing\+\_\+file}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{ptr\+\_\+missing\+\_\+file}{ptr\_missing\_file}}
+{\footnotesize\ttfamily \#define ptr\+\_\+missing\+\_\+file~N\+U\+LL}
+
+\mbox{\Hypertarget{Controller_8h_a460d64ddab1cca1af3268ea3ffb9d322}\label{Controller_8h_a460d64ddab1cca1af3268ea3ffb9d322}} 
+\index{Controller.\+h@{Controller.\+h}!reading\+\_\+failed@{reading\+\_\+failed}}
+\index{reading\+\_\+failed@{reading\+\_\+failed}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{reading\+\_\+failed}{reading\_failed}}
+{\footnotesize\ttfamily \#define reading\+\_\+failed~-\/3}
+
+\mbox{\Hypertarget{Controller_8h_a1b18f4b960b1edf77fa6c4f9c668d1f9}\label{Controller_8h_a1b18f4b960b1edf77fa6c4f9c668d1f9}} 
+\index{Controller.\+h@{Controller.\+h}!sector\+\_\+size@{sector\+\_\+size}}
+\index{sector\+\_\+size@{sector\+\_\+size}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{sector\+\_\+size}{sector\_size}}
+{\footnotesize\ttfamily \#define sector\+\_\+size~512}
+
+\mbox{\Hypertarget{Controller_8h_a0969e76eaf059fec670aef17470f307b}\label{Controller_8h_a0969e76eaf059fec670aef17470f307b}} 
+\index{Controller.\+h@{Controller.\+h}!sectors\+\_\+amount@{sectors\+\_\+amount}}
+\index{sectors\+\_\+amount@{sectors\+\_\+amount}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{sectors\+\_\+amount}{sectors\_amount}}
+{\footnotesize\ttfamily \#define sectors\+\_\+amount~3000}
+
+\mbox{\Hypertarget{Controller_8h_a75b952938d40fc13121b9261f8e5c4ab}\label{Controller_8h_a75b952938d40fc13121b9261f8e5c4ab}} 
+\index{Controller.\+h@{Controller.\+h}!sectors\+\_\+per\+\_\+cylinder@{sectors\+\_\+per\+\_\+cylinder}}
+\index{sectors\+\_\+per\+\_\+cylinder@{sectors\+\_\+per\+\_\+cylinder}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{sectors\+\_\+per\+\_\+cylinder}{sectors\_per\_cylinder}}
+{\footnotesize\ttfamily \#define sectors\+\_\+per\+\_\+cylinder~300}
+
+\mbox{\Hypertarget{Controller_8h_ab4b038d52bc29ca8c6b9c7964caf53b8}\label{Controller_8h_ab4b038d52bc29ca8c6b9c7964caf53b8}} 
+\index{Controller.\+h@{Controller.\+h}!sectors\+\_\+per\+\_\+track@{sectors\+\_\+per\+\_\+track}}
+\index{sectors\+\_\+per\+\_\+track@{sectors\+\_\+per\+\_\+track}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{sectors\+\_\+per\+\_\+track}{sectors\_per\_track}}
+{\footnotesize\ttfamily \#define sectors\+\_\+per\+\_\+track~60}
+
+\mbox{\Hypertarget{Controller_8h_a183d8d54eee8d59c0dafff0f04c24023}\label{Controller_8h_a183d8d54eee8d59c0dafff0f04c24023}} 
+\index{Controller.\+h@{Controller.\+h}!succeed@{succeed}}
+\index{succeed@{succeed}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{succeed}{succeed}}
+{\footnotesize\ttfamily \#define succeed~0x0}
+
+\mbox{\Hypertarget{Controller_8h_ac2135ecb0c45d031ad75ea61d7a7ce64}\label{Controller_8h_ac2135ecb0c45d031ad75ea61d7a7ce64}} 
+\index{Controller.\+h@{Controller.\+h}!tracks\+\_\+per\+\_\+cylinder@{tracks\+\_\+per\+\_\+cylinder}}
+\index{tracks\+\_\+per\+\_\+cylinder@{tracks\+\_\+per\+\_\+cylinder}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{tracks\+\_\+per\+\_\+cylinder}{tracks\_per\_cylinder}}
+{\footnotesize\ttfamily \#define tracks\+\_\+per\+\_\+cylinder~5}
+
+\mbox{\Hypertarget{Controller_8h_aa01c5a55a7b64ff83dbc8923404f5918}\label{Controller_8h_aa01c5a55a7b64ff83dbc8923404f5918}} 
+\index{Controller.\+h@{Controller.\+h}!tracks\+\_\+per\+\_\+surface@{tracks\+\_\+per\+\_\+surface}}
+\index{tracks\+\_\+per\+\_\+surface@{tracks\+\_\+per\+\_\+surface}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{tracks\+\_\+per\+\_\+surface}{tracks\_per\_surface}}
+{\footnotesize\ttfamily \#define tracks\+\_\+per\+\_\+surface~10}
+
+\mbox{\Hypertarget{Controller_8h_ac7b10a75393a95f4d90a64c4ad40a871}\label{Controller_8h_ac7b10a75393a95f4d90a64c4ad40a871}} 
+\index{Controller.\+h@{Controller.\+h}!transfer\+\_\+time@{transfer\+\_\+time}}
+\index{transfer\+\_\+time@{transfer\+\_\+time}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{transfer\+\_\+time}{transfer\_time}}
+{\footnotesize\ttfamily \#define transfer\+\_\+time~12}
+
+\mbox{\Hypertarget{Controller_8h_a961297de9ca2bf1f45e452eb47c1a197}\label{Controller_8h_a961297de9ca2bf1f45e452eb47c1a197}} 
+\index{Controller.\+h@{Controller.\+h}!unavailable@{unavailable}}
+\index{unavailable@{unavailable}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{unavailable}{unavailable}}
+{\footnotesize\ttfamily \#define unavailable~1}
+
+\mbox{\Hypertarget{Controller_8h_a1177cc3700177fed490eaa4aebe7795b}\label{Controller_8h_a1177cc3700177fed490eaa4aebe7795b}} 
+\index{Controller.\+h@{Controller.\+h}!writing\+\_\+failed@{writing\+\_\+failed}}
+\index{writing\+\_\+failed@{writing\+\_\+failed}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{writing\+\_\+failed}{writing\_failed}}
+{\footnotesize\ttfamily \#define writing\+\_\+failed~-\/2}
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{Controller_8h_addd3f2f7957fb4e48765dc1d841ea61c}\label{Controller_8h_addd3f2f7957fb4e48765dc1d841ea61c}} 
+\index{Controller.\+h@{Controller.\+h}!Cylinder@{Cylinder}}
+\index{Cylinder@{Cylinder}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{Cylinder}{Cylinder}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structcylinder}{cylinder} \hyperlink{Controller_8h_addd3f2f7957fb4e48765dc1d841ea61c}{Cylinder}}
+
+\mbox{\Hypertarget{Controller_8h_abedaca4384c1842591e79536cf3429da}\label{Controller_8h_abedaca4384c1842591e79536cf3429da}} 
+\index{Controller.\+h@{Controller.\+h}!Fat\+Ent@{Fat\+Ent}}
+\index{Fat\+Ent@{Fat\+Ent}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{Fat\+Ent}{FatEnt}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structfatent}{fatent} \hyperlink{Controller_8h_abedaca4384c1842591e79536cf3429da}{Fat\+Ent}}
+
+\mbox{\Hypertarget{Controller_8h_aa84916cacfe28babf283e252f87b011e}\label{Controller_8h_aa84916cacfe28babf283e252f87b011e}} 
+\index{Controller.\+h@{Controller.\+h}!Fat\+Files@{Fat\+Files}}
+\index{Fat\+Files@{Fat\+Files}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{Fat\+Files}{FatFiles}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structfatfiles}{fatfiles} \hyperlink{Controller_8h_aa84916cacfe28babf283e252f87b011e}{Fat\+Files}}
+
+\mbox{\Hypertarget{Controller_8h_a966684edcb4dc60830222ed4b425d369}\label{Controller_8h_a966684edcb4dc60830222ed4b425d369}} 
+\index{Controller.\+h@{Controller.\+h}!Fat\+Table@{Fat\+Table}}
+\index{Fat\+Table@{Fat\+Table}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{Fat\+Table}{FatTable}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structfattable}{fattable} \hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table}}
+
+\mbox{\Hypertarget{Controller_8h_a8cca6de5b7a5aa7542b645270752e38b}\label{Controller_8h_a8cca6de5b7a5aa7542b645270752e38b}} 
+\index{Controller.\+h@{Controller.\+h}!Sector@{Sector}}
+\index{Sector@{Sector}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{Sector}{Sector}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structsector}{sector} \hyperlink{Controller_8h_a8cca6de5b7a5aa7542b645270752e38b}{Sector}}
+
+\mbox{\Hypertarget{Controller_8h_afc447719272e2c615253e5962c998916}\label{Controller_8h_afc447719272e2c615253e5962c998916}} 
+\index{Controller.\+h@{Controller.\+h}!Track@{Track}}
+\index{Track@{Track}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{Track}{Track}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structtrack}{track} \hyperlink{Controller_8h_afc447719272e2c615253e5962c998916}{Track}}
+
+\mbox{\Hypertarget{Controller_8h_aac9714ee244ab7b1ecf20b9ee4766dfb}\label{Controller_8h_aac9714ee244ab7b1ecf20b9ee4766dfb}} 
+\index{Controller.\+h@{Controller.\+h}!Virtual\+Disk@{Virtual\+Disk}}
+\index{Virtual\+Disk@{Virtual\+Disk}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{Virtual\+Disk}{VirtualDisk}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structvirtualdisk}{virtualdisk} \hyperlink{Controller_8h_aac9714ee244ab7b1ecf20b9ee4766dfb}{Virtual\+Disk}}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{Controller_8h_ad669323163b7b2b3175c7c35d5733230}\label{Controller_8h_ad669323163b7b2b3175c7c35d5733230}} 
+\index{Controller.\+h@{Controller.\+h}!allocate\+Clusters@{allocate\+Clusters}}
+\index{allocate\+Clusters@{allocate\+Clusters}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{allocate\+Clusters()}{allocateClusters()}}
+{\footnotesize\ttfamily int$\ast$ allocate\+Clusters (\begin{DoxyParamCaption}\item[{\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+\hyperlink{Controller_8h_ad669323163b7b2b3175c7c35d5733230}{allocate\+Clusters()}; Sets all clusters that a file will use  \+: F\+AT Table of the disk, an integer with the amount of clusters needed by the file \begin{DoxyReturn}{Returns}
+\+: an array of integers with the number of all clusters 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Controller_8h_a0069f7330b3720f267c9be2e4e7fdb6d}\label{Controller_8h_a0069f7330b3720f267c9be2e4e7fdb6d}} 
+\index{Controller.\+h@{Controller.\+h}!computing\+Time@{computing\+Time}}
+\index{computing\+Time@{computing\+Time}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{computing\+Time()}{computingTime()}}
+{\footnotesize\ttfamily double computing\+Time (\begin{DoxyParamCaption}\item[{int $\ast$}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+\hyperlink{Controller_8h_a0069f7330b3720f267c9be2e4e7fdb6d}{computing\+Time()}; Calculates the time needed to write or read a file  \+: array with the clusters used, size of the array \begin{DoxyReturn}{Returns}
+\+: double with the time used in the operation 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Controller_8h_a4d158080d463ad0106c96d88269462ac}\label{Controller_8h_a4d158080d463ad0106c96d88269462ac}} 
+\index{Controller.\+h@{Controller.\+h}!create\+Buffer@{create\+Buffer}}
+\index{create\+Buffer@{create\+Buffer}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{create\+Buffer()}{createBuffer()}}
+{\footnotesize\ttfamily unsigned char$\ast$ create\+Buffer (\begin{DoxyParamCaption}\item[{char $\ast$}]{,  }\item[{int $\ast$}]{ }\end{DoxyParamCaption})}
+
+\hyperlink{Controller_8h_a4d158080d463ad0106c96d88269462ac}{create\+Buffer()}; Opens a file and creates a buffer with its content  \+: string with the filename and an pointer to an integer with the size of the buffer \begin{DoxyReturn}{Returns}
+\+: string containing the file 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Controller_8h_a694834c6f5bc4a427b9109ab97de8d6c}\label{Controller_8h_a694834c6f5bc4a427b9109ab97de8d6c}} 
+\index{Controller.\+h@{Controller.\+h}!delete\+File@{delete\+File}}
+\index{delete\+File@{delete\+File}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{delete\+File()}{deleteFile()}}
+{\footnotesize\ttfamily int delete\+File (\begin{DoxyParamCaption}\item[{\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$}]{,  }\item[{char $\ast$}]{ }\end{DoxyParamCaption})}
+
+\hyperlink{Controller_8h_a694834c6f5bc4a427b9109ab97de8d6c}{delete\+File()}; Provides the interface to delete a file  \+: F\+AT Table pointer, string with the filename \begin{DoxyReturn}{Returns}
+\+: a integer meaning the completeness (or not) of the operation 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Controller_8h_a19b6aeee0943bf88ff607999c909abb0}\label{Controller_8h_a19b6aeee0943bf88ff607999c909abb0}} 
+\index{Controller.\+h@{Controller.\+h}!find\+Cluster@{find\+Cluster}}
+\index{find\+Cluster@{find\+Cluster}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{find\+Cluster()}{findCluster()}}
+{\footnotesize\ttfamily int find\+Cluster (\begin{DoxyParamCaption}\item[{\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$}]{ }\end{DoxyParamCaption})}
+
+\hyperlink{Controller_8h_a19b6aeee0943bf88ff607999c909abb0}{find\+Cluster()}; Finds the next empty cluster  \+: F\+AT Table of the disk \begin{DoxyReturn}{Returns}
+\+: Number of the sector where the cluster starts (integer) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Controller_8h_a7417e49b4ca4441e44e5682961978a7a}\label{Controller_8h_a7417e49b4ca4441e44e5682961978a7a}} 
+\index{Controller.\+h@{Controller.\+h}!finish\+Fat@{finish\+Fat}}
+\index{finish\+Fat@{finish\+Fat}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{finish\+Fat()}{finishFat()}}
+{\footnotesize\ttfamily void finish\+Fat (\begin{DoxyParamCaption}\item[{\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$}]{ }\end{DoxyParamCaption})}
+
+\hyperlink{Controller_8h_a7417e49b4ca4441e44e5682961978a7a}{finish\+Fat()}; Releases all the memory used for the F\+AT Table  \+: Fat\+Table pointer type containing the F\+AT Table to be \char`\"{}destroyed\char`\"{} \mbox{\Hypertarget{Controller_8h_a683d56d7bfed2e245096bd443c1bba87}\label{Controller_8h_a683d56d7bfed2e245096bd443c1bba87}} 
+\index{Controller.\+h@{Controller.\+h}!format\+Disk@{format\+Disk}}
+\index{format\+Disk@{format\+Disk}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{format\+Disk()}{formatDisk()}}
+{\footnotesize\ttfamily \hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table}$\ast$ format\+Disk (\begin{DoxyParamCaption}\item[{\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Controller_8h_a5cf5ebee92cc654930d3cbebb536498c}\label{Controller_8h_a5cf5ebee92cc654930d3cbebb536498c}} 
+\index{Controller.\+h@{Controller.\+h}!free\+Clusters@{free\+Clusters}}
+\index{free\+Clusters@{free\+Clusters}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{free\+Clusters()}{freeClusters()}}
+{\footnotesize\ttfamily void free\+Clusters (\begin{DoxyParamCaption}\item[{\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$}]{,  }\item[{int $\ast$}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+\hyperlink{Controller_8h_a5cf5ebee92cc654930d3cbebb536498c}{free\+Clusters()}; In case of an error, this function restores the disk to its previous state (before the writing has been started)  \+: F\+AT Table of the disk, the clusters and the amount of clusters that were used in the writing session \mbox{\Hypertarget{Controller_8h_a8a37658f171d55fea2ae968564f78e49}\label{Controller_8h_a8a37658f171d55fea2ae968564f78e49}} 
+\index{Controller.\+h@{Controller.\+h}!install\+Disk@{install\+Disk}}
+\index{install\+Disk@{install\+Disk}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{install\+Disk()}{installDisk()}}
+{\footnotesize\ttfamily \hyperlink{Controller_8h_aac9714ee244ab7b1ecf20b9ee4766dfb}{Virtual\+Disk}$\ast$ install\+Disk (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hyperlink{Controller_8h_a8a37658f171d55fea2ae968564f78e49}{install\+Disk()}; This function is responsible for the allocation of the memory that will be used to the disk structure \begin{DoxyReturn}{Returns}
+\+: Virtual\+Disk pointer type, pointing to the just allocated memory area. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Controller_8h_a1b26821fcb8ae212561015d91e44f2d4}\label{Controller_8h_a1b26821fcb8ae212561015d91e44f2d4}} 
+\index{Controller.\+h@{Controller.\+h}!read\+File@{read\+File}}
+\index{read\+File@{read\+File}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{read\+File()}{readFile()}}
+{\footnotesize\ttfamily double read\+File (\begin{DoxyParamCaption}\item[{\hyperlink{Controller_8h_aac9714ee244ab7b1ecf20b9ee4766dfb}{Virtual\+Disk} $\ast$}]{,  }\item[{\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$}]{,  }\item[{char $\ast$}]{ }\end{DoxyParamCaption})}
+
+\hyperlink{Controller_8h_a1b26821fcb8ae212561015d91e44f2d4}{read\+File()}; Provides the interface to read a file  \+: Disk pointer, F\+AT Table pointer, string with the filename \begin{DoxyReturn}{Returns}
+\+: a double with the time elapsed to read the file 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Controller_8h_abfc572b683b8ab210717bc13d09757dc}\label{Controller_8h_abfc572b683b8ab210717bc13d09757dc}} 
+\index{Controller.\+h@{Controller.\+h}!seek\+Cluster@{seek\+Cluster}}
+\index{seek\+Cluster@{seek\+Cluster}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{seek\+Cluster()}{seekCluster()}}
+{\footnotesize\ttfamily int$\ast$ seek\+Cluster (\begin{DoxyParamCaption}\item[{int}]{ }\end{DoxyParamCaption})}
+
+\hyperlink{Controller_8h_abfc572b683b8ab210717bc13d09757dc}{seek\+Cluster()}; Locates a sector in the disk  \+: integer with the number of the sector \begin{DoxyReturn}{Returns}
+\+: an array of integers containing the coordinates of the sector in the disk 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Controller_8h_a40ec5950586c1ca119ebc2674e0ecee5}\label{Controller_8h_a40ec5950586c1ca119ebc2674e0ecee5}} 
+\index{Controller.\+h@{Controller.\+h}!show\+F\+A\+T\+Table@{show\+F\+A\+T\+Table}}
+\index{show\+F\+A\+T\+Table@{show\+F\+A\+T\+Table}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{show\+F\+A\+T\+Table()}{showFATTable()}}
+{\footnotesize\ttfamily void show\+F\+A\+T\+Table (\begin{DoxyParamCaption}\item[{\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$}]{ }\end{DoxyParamCaption})}
+
+\hyperlink{Controller_8h_a40ec5950586c1ca119ebc2674e0ecee5}{show\+F\+A\+T\+Table()}; Prints the F\+AT Table on the screen  \+: F\+AT Table pointer \mbox{\Hypertarget{Controller_8h_ace36a1adbded1629ac5e3bb6893d65a9}\label{Controller_8h_ace36a1adbded1629ac5e3bb6893d65a9}} 
+\index{Controller.\+h@{Controller.\+h}!start\+Fat@{start\+Fat}}
+\index{start\+Fat@{start\+Fat}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{start\+Fat()}{startFat()}}
+{\footnotesize\ttfamily \hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table}$\ast$ start\+Fat (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hyperlink{Controller_8h_ace36a1adbded1629ac5e3bb6893d65a9}{start\+Fat()}; Allocates and starts the F\+AT Table with the appropriated constants \begin{DoxyReturn}{Returns}
+\+: Fat\+Table pointer type, pointing to the just allocated memory area 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Controller_8h_add6330ba12cb0733df16e77935f1f21b}\label{Controller_8h_add6330ba12cb0733df16e77935f1f21b}} 
+\index{Controller.\+h@{Controller.\+h}!uninstall\+Disk@{uninstall\+Disk}}
+\index{uninstall\+Disk@{uninstall\+Disk}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{uninstall\+Disk()}{uninstallDisk()}}
+{\footnotesize\ttfamily void uninstall\+Disk (\begin{DoxyParamCaption}\item[{\hyperlink{Controller_8h_aac9714ee244ab7b1ecf20b9ee4766dfb}{Virtual\+Disk} $\ast$}]{ }\end{DoxyParamCaption})}
+
+\hyperlink{Controller_8h_add6330ba12cb0733df16e77935f1f21b}{uninstall\+Disk()}; This function does the opposite of install\+Disk, releasing all the allocated memory for the disk  \+: Virtual\+Disk pointer type, pointing to the disk to be \char`\"{}destroyed\char`\"{}. \mbox{\Hypertarget{Controller_8h_ad5d72fb08a29d478aec7e38cf7569a68}\label{Controller_8h_ad5d72fb08a29d478aec7e38cf7569a68}} 
+\index{Controller.\+h@{Controller.\+h}!write\+File@{write\+File}}
+\index{write\+File@{write\+File}!Controller.\+h@{Controller.\+h}}
+\subsubsection{\texorpdfstring{write\+File()}{writeFile()}}
+{\footnotesize\ttfamily double write\+File (\begin{DoxyParamCaption}\item[{\hyperlink{Controller_8h_aac9714ee244ab7b1ecf20b9ee4766dfb}{Virtual\+Disk} $\ast$}]{,  }\item[{\hyperlink{Controller_8h_a966684edcb4dc60830222ed4b425d369}{Fat\+Table} $\ast$}]{,  }\item[{char $\ast$}]{ }\end{DoxyParamCaption})}
+
+\hyperlink{Controller_8h_ad5d72fb08a29d478aec7e38cf7569a68}{write\+File()}; Provides the interface to write a file  \+: Disk pointer, F\+AT Table pointer, string with the filename \begin{DoxyReturn}{Returns}
+\+: a double with the time elapsed to write the file 
+\end{DoxyReturn}
